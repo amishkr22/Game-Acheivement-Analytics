@@ -7,6 +7,9 @@
 A web application built with **Streamlit** and **PostgreSQL** to analyze gaming achievements. Users can enter SQL queries, visualize the results, and manage data.
 
 ---
+## Project Description
+
+The **Gaming Achievement Analytics** project is a data-driven web application designed to help game developers, analysts, and enthusiasts explore and analyze gaming achievement data. The application allows users to interact with a PostgreSQL database, execute SQL queries, and visualize the results in real-time.
 
 ## Features
 
@@ -14,6 +17,143 @@ A web application built with **Streamlit** and **PostgreSQL** to analyze gaming 
 - **Data Generation**: Generate fake gaming data and save it to CSV files.
 - **Data Loading**: Load CSV data into a PostgreSQL database.
 - **Visualizations**: Automatically generate bar charts for query results.
+
+---
+
+## Approach
+
+The project follows a **data pipeline approach** to generate, load, and analyze gaming achievement data. Here’s an overview of the steps:
+
+1. **Data Generation**:
+   - Synthetic data is generated using the **Faker** library in Python.
+   - The data includes:
+     - **Players**: Usernames, regions, playtime, and join dates.
+     - **Games**: Titles, genres, developers, and release dates.
+     - **Achievements**: Names, descriptions, difficulty levels, and rewards.
+     - **Achievement Facts**: Records of players completing achievements, including timestamps and scores.
+
+2. **Data Loading**:
+   - The generated data is saved to CSV files.
+   - A Python script loads the CSV data into a **PostgreSQL** database using the `psycopg2` library.
+
+3. **Data Analysis**:
+   - Users can enter SQL queries to analyze the data.
+   - The application executes the queries and displays the results in a table.
+   - A bar chart is automatically generated for queries with numeric results.
+
+4. **Web Interface**:
+   - The **Streamlit** framework is used to create a user-friendly web interface.
+   - Users can interact with the application through a sidebar and main display area.
+
+---
+
+## Star Schema Design
+
+The database is designed using a **star schema**, a common data warehouse design pattern. The star schema consists of a central **fact table** surrounded by **dimension tables**. Here’s how the tables are structured:
+
+### Fact Table
+- **`achievement_fact`**:
+  - Contains records of players completing achievements.
+  - **Columns**:
+    - `achievement_fact_id` (Primary Key): Unique identifier for each record.
+    - `player_id` (Foreign Key): References `player_dim`.
+    - `game_id` (Foreign Key): References `game_dim`.
+    - `achievement_id` (Foreign Key): References `achievement_dim`.
+    - `time_id` (Foreign Key): References `time_dim`.
+    - `completion_time`: Time taken to complete the achievement (in seconds).
+    - `score_earned`: Points earned for completing the achievement.
+
+### Dimension Tables
+1. **`player_dim`**:
+   - Contains details about players.
+   - **Columns**:
+     - `player_id` (Primary Key): Unique identifier for each player.
+     - `username`: Player's username.
+     - `region`: Player's region or country.
+     - `playtime`: Total hours played by the player.
+     - `join_date`: Date the player joined the platform.
+
+2. **`game_dim`**:
+   - Contains details about games.
+   - **Columns**:
+     - `game_id` (Primary Key): Unique identifier for each game.
+     - `title`: Title of the game.
+     - `genre`: Genre of the game (e.g., Action, RPG, Strategy).
+     - `developer`: Developer of the game.
+     - `release_date`: Release date of the game.
+
+3. **`achievement_dim`**:
+   - Contains details about achievements.
+   - **Columns**:
+     - `achievement_id` (Primary Key): Unique identifier for each achievement.
+     - `name`: Name of the achievement.
+     - `description`: Description of the achievement.
+     - `difficulty`: Difficulty level (e.g., Easy, Medium, Hard).
+     - `reward`: Points or rewards for completing the achievement.
+
+4. **`time_dim`**:
+   - Contains timestamps for achievement completions.
+   - **Columns**:
+     - `time_id` (Primary Key): Unique identifier for each timestamp.
+     - `timestamp`: Timestamp of the achievement completion.
+     - `hour`: Hour of the day.
+     - `day`: Day of the month.
+     - `month`: Month of the year.
+     - `year`: Year.
+
+---
+
+## Datasets
+
+The project uses the following datasets, which are generated synthetically:
+
+### 1. **Players (`player_dim`)**
+   - Contains details about players.
+   - **Columns**:
+     - `player_id` (Primary Key): Unique identifier for each player.
+     - `username`: Player's username.
+     - `region`: Player's region or country.
+     - `playtime`: Total hours played by the player.
+     - `join_date`: Date the player joined the platform.
+
+### 2. **Games (`game_dim`)**
+   - Contains details about games.
+   - **Columns**:
+     - `game_id` (Primary Key): Unique identifier for each game.
+     - `title`: Title of the game.
+     - `genre`: Genre of the game (e.g., Action, RPG, Strategy).
+     - `developer`: Developer of the game.
+     - `release_date`: Release date of the game.
+
+### 3. **Achievements (`achievement_dim`)**
+   - Contains details about achievements.
+   - **Columns**:
+     - `achievement_id` (Primary Key): Unique identifier for each achievement.
+     - `name`: Name of the achievement.
+     - `description`: Description of the achievement.
+     - `difficulty`: Difficulty level (e.g., Easy, Medium, Hard).
+     - `reward`: Points or rewards for completing the achievement.
+
+### 4. **Time (`time_dim`)**
+   - Contains timestamps for achievement completions.
+   - **Columns**:
+     - `time_id` (Primary Key): Unique identifier for each timestamp.
+     - `timestamp`: Timestamp of the achievement completion.
+     - `hour`: Hour of the day.
+     - `day`: Day of the month.
+     - `month`: Month of the year.
+     - `year`: Year.
+
+### 5. **Achievement Facts (`achievement_fact`)**
+   - Contains records of players completing achievements.
+   - **Columns**:
+     - `achievement_fact_id` (Primary Key): Unique identifier for each record.
+     - `player_id` (Foreign Key): References `player_dim`.
+     - `game_id` (Foreign Key): References `game_dim`.
+     - `achievement_id` (Foreign Key): References `achievement_dim`.
+     - `time_id` (Foreign Key): References `time_dim`.
+     - `completion_time`: Time taken to complete the achievement (in seconds).
+     - `score_earned`: Points earned for completing the achievement.
 
 ---
 
