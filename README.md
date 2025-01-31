@@ -31,8 +31,8 @@ Before running the project, ensure you have the following installed:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/amishkr22/gaming-analytics.git
-   cd gaming-analytics
+   git clone https://github.com/amishkr22/Game-Acheivement-Analytics.git
+   cd Game-Acheivement-Analytics
    ```
 
 2. **Install dependencies**:
