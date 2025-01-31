@@ -4,9 +4,9 @@ import psycopg2
 def connect_to_db():
     """Connect to the PostgreSQL database."""
     conn = psycopg2.connect(
-        dbname="gaming_analytics",
-        user="postgres",  # Replace with your username
-        password="Amish@22",  # Replace with your password
+        dbname="your-db-name", # Replace with your database name
+        user="your-username",  # Replace with your username
+        password="your-password",  # Replace with your password
         host="localhost"
     )
     return conn

@@ -3,4 +3,5 @@ psycopg2
 faker
 matplotlib
 dash
+streamlit
 -e .
