@@ -42,13 +42,13 @@ Before running the project, ensure you have the following installed:
 
 3. **Set up PostgreSQL**:
    - Create a database named `gaming_analytics`.
-   - Update the connection details in `gaming_analytics/utils.py` if necessary.
+   - Update the connection details in `src/utils.py` if necessary.
 
 4. **Generate and Load Data**:
    - Run the following commands to generate fake data and load it into the database:
      ```bash
-     python -m gaming_analytics.generate_data
-     python -m gaming_analytics.load_data
+     python -m src.generate_data
+     python -m src.load_data
      ```
 
 ---
