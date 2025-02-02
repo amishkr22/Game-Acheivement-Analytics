@@ -12,7 +12,7 @@ dependencies:
   - streamlit
   - pip
   - pip:
-      - -e .  # Install the package from setup.py (editable mode)
+      - -e . 
 variables:
   DATA_DIR: "Data"
   DB_HOST: "localhost"
