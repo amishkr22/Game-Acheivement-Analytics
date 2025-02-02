@@ -1,5 +1,7 @@
-# gaming_analytics/utils.py
 import psycopg2
+import yaml
+import os
+
 
 def connect_to_db():
     """Connect to the PostgreSQL database."""
@@ -10,3 +12,13 @@ def connect_to_db():
         host="localhost"
     )
     return conn
+
+def load_config():
+    with open("environment.yml", "r") as file:
+        config = yaml.safe_load(file)
+    return config.get("config", {})
+
+def get_data_path(filename):
+    config = load_config()
+    data_dir = config.get("data_dir", "./Data")
+    return os.path.join(data_dir, filename)

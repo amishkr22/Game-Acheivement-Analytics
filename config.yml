@@ -1,4 +1,3 @@
-# environment.yml
 name: game_achievement_analytics
 channels:
   - conda-forge
