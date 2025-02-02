@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from src.utils import connect_to_db
 from src.data_generator import generate_data
 from src.data_loader import load_data
+from src.analyzer import analyze_top_players, analyze_most_difficult_achievements
 
 # Load environment variable for data directory
 DATA_DIR = os.getenv("DATA_DIR", "Data")
@@ -56,6 +57,18 @@ if st.sidebar.button("Generate Data"):
 if st.sidebar.button("Load Data into Database"):
     load_data()
     st.sidebar.success("Data loaded into PostgreSQL!")
+
+st.sidebar.header("Predefined Analyses")
+
+if st.sidebar.button("Show Top Players"):
+    df = analyze_top_players()
+    st.write("### Top 10 Players by Score")
+    st.write(df)
+
+if st.sidebar.button("Most Difficult Achievements"):
+    df = analyze_most_difficult_achievements()
+    st.write("### Most Difficult Achievements (Least Completed)")
+    st.write(df)
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("🚀 **Developed for Data Analytics**")
