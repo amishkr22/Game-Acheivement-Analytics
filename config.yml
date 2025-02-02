@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.10
+  - python=3.8
   - pandas
   - psycopg2
   - faker
@@ -12,12 +12,15 @@ dependencies:
   - streamlit
   - pip
   - pip:
-      - -e .
-
-config:
-  data_dir: ./Data
-  players_file: players.csv
-  games_file: games.csv
-  achievements_file: achievements.csv
-  time_file: time.csv
-  achievement_facts_file: achievement_facts.csv
+      - -e .  # Install the package from setup.py (editable mode)
+variables:
+  DATA_DIR: "Data"
+  DB_HOST: "localhost"
+  DB_NAME: "your-db-name"
+  DB_USER: "your-username"
+  DB_PASS: "your-password"
+  PLAYERS_FILE: "players.csv"
+  GAMES_FILE: "games.csv"
+  ACHIEVEMENTS_FILE: "achievements.csv"
+  TIME_FILE: "time.csv"
+  ACHIEVEMENT_FACTS_FILE: "achievement_facts.csv"
