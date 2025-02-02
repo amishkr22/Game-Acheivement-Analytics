@@ -134,7 +134,10 @@ The project uses the following datasets, which are generated synthetically:
 ## 📊 **Database Schema (Star Schema)**
 The database is designed using a **star schema**, a common data warehouse design pattern. The star schema consists of a central **fact table** surrounded by **dimension tables**. Here’s how the tables are structured:
 
-![Database Schema](asset/database_diagram.png)
+<p align="center">
+  <img src="asset/database_diagram.png" alt="Database Schema" width="500">
+</p>
+
 
 ### Fact Table
 - **`achievement_fact`**:
