@@ -1,0 +1,24 @@
+# environment.yml
+name: game_achievement_analytics
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pandas
+  - psycopg2
+  - faker
+  - matplotlib
+  - dash
+  - streamlit
+  - pip
+  - pip:
+      - -e .
+
+config:
+  data_dir: ./Data
+  players_file: players.csv
+  games_file: games.csv
+  achievements_file: achievements.csv
+  time_file: time.csv
+  achievement_facts_file: achievement_facts.csv
